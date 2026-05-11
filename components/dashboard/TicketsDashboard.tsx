@@ -35,8 +35,14 @@ interface DashboardData {
     created_at: string
   }[]
 }
+interface Props {
+  eventId: string
+}
 
-export default function TicketsDashboard() {
+
+export default function TicketsDashboard({
+  eventId,
+}: Props) {
   const [dashboard, setDashboard] = useState<DashboardData | null>(null)
   const [loading, setLoading] = useState(true)
 
@@ -44,7 +50,7 @@ export default function TicketsDashboard() {
     async function loadDashboard() {
       try {
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/api/admin/dashboard/11111111-1111-1111-1111-111111111111`
+          `${process.env.NEXT_PUBLIC_API_URL}/api/admin/dashboard/${eventId}`
         )
         console.log('STATUS:', response.status)
 

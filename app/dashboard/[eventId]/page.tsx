@@ -1,13 +1,15 @@
 import TicketsDashboard from '@/components/dashboard/TicketsDashboard'
 
-interface PageProps {
-  params: {
+interface Props {
+  params: Promise<{
     eventId: string
-  }
+  }>
 }
 
-export default function DashboardPage({ params }: PageProps) {
+export default async function Page({ params }: Props) {
+  const { eventId } = await params
+
   return (
-    <TicketsDashboard eventId={params.eventId} />
+    <TicketsDashboard eventId={eventId} />
   )
 }
